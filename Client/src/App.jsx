@@ -3,13 +3,18 @@ import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 import "bootstrap/dist/js/bootstrap.bundle";
 import Navbar from "./components/Navbar";
-import Home from "./Home";
+import Home from "./components/Home";
+import Add from "./components/Add";
+import { Switch, Route } from "react-router-dom";
 
 const App = () => {
   return (
     <>
       <Navbar />
-      <Home />
+      <Switch>
+        <Route exact path={"/"} component={Home} />
+        <Route path={"/add"} component={Add} />
+      </Switch>
     </>
   );
 };
