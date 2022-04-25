@@ -1,7 +1,29 @@
-import React from "react";
+import React, { useState, useCallback } from "react";
 import { NavLink } from "react-router-dom";
+import BarcodeReader from "react-barcode-reader";
 
 const Add = () => {
+  const [result, setResult] = useState("No result");
+  const handleScan = useCallback((data) => {
+    setResult(data);
+  }, []);
+  const [inpval, SetInpval] = useState({
+    name: "",
+    image: "",
+    price: "",
+    barcode: "",
+  });
+  const setData = (e) => {
+    const { name, value } = e.target;
+
+    SetInpval((preval) => {
+      return {
+        ...preval,
+        [name]: value,
+      };
+    });
+  };
+  const [bcMood, setBcMood] = useState(false);
   return (
     <div className="container">
       <NavLink to="/">Back To Home</NavLink>
@@ -9,24 +31,56 @@ const Add = () => {
       <form className="rounded">
         <div className="row">
           <div class="mb-3">
-            <label for="exampleInputEmail1" class="form-label">
-              Email address
-            </label>
+            <label class="form-label">Name</label>
             <input
-              type="email"
+              name="name"
+              onChange={setData}
+              type="text"
+              value={inpval.name}
               class="form-control"
-              id="exampleInputEmail1"
-              aria-describedby="emailHelp"
             />
           </div>
           <div class="mb-3">
-            <label for="exampleInputPassword1" class="form-label">
-              Password
+            <label for="image" class="fs-5" className="form-label">
+              Select Image
             </label>
             <input
-              type="password"
+              type="file"
+              name="image"
+              class="form-control form-control-lg"
+              value={inpval.image}
+              required
+            />
+          </div>
+          <div class="mb-3">
+            <label className="form-label">Price</label>
+            <input
+              type="number"
+              name="price"
+              onChange={setData}
               class="form-control"
-              id="exampleInputPassword1"
+              value={inpval.price}
+            />
+          </div>
+          <div class="mb-3">
+            <label className="form-label">Barcode</label>
+            <BarcodeReader onScan={handleScan} />
+            <br />
+            <label>
+              <input
+                type="checkbox"
+                onClick={(e) =>
+                  e.target.checked ? setBcMood(true) : setBcMood(false)
+                }
+              />
+              Add Barcode Manually
+            </label>
+            <input
+              type="number"
+              value={bcMood === false ? result : inpval.barcode}
+              onChange={setData}
+              name="barcode"
+              class="form-control"
             />
           </div>
           <button type="submit" class="btn btn-primary">
