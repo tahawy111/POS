@@ -5,6 +5,7 @@ import "bootstrap/dist/js/bootstrap.bundle";
 import Navbar from "./components/Navbar";
 import Home from "./components/Home";
 import Add from "./components/Add";
+import Edit from "./components/Edit";
 import { Switch, Route } from "react-router-dom";
 
 const App = () => {
@@ -14,6 +15,7 @@ const App = () => {
       <Switch>
         <Route exact path={"/"} component={Home} />
         <Route path={"/add"} component={Add} />
+        <Route path={"/edit/:id"} component={Edit} />
       </Switch>
     </>
   );
