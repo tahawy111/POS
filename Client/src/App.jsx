@@ -1,3 +1,4 @@
+/* eslint-disable no-restricted-globals */
 import React from "react";
 import "./App.css";
 import "bootstrap/dist/css/bootstrap.min.css";
