@@ -81,6 +81,7 @@ const Add = () => {
               onChange={setData}
               name="barcode"
               class="form-control"
+              // disabled={bcMood === false ? result : inpval.barcode}
             />
           </div>
           <button type="submit" class="btn btn-primary">

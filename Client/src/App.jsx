@@ -15,7 +15,7 @@ const App = () => {
       <Navbar />
       <Switch>
         <Route exact path={"/"} component={Home} />
-        <Route path={"/add/:id"} component={Add} />
+        <Route path={"/add"} component={Add} />
         <Route path={"/edit/:id"} component={Edit} />
       </Switch>
     </>
